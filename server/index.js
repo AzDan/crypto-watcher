@@ -25,7 +25,13 @@ app.get("/time", (req, res) => {
   .catch(error => {
     console.log(error);
   });
+});
 
+app.get("/ticker/:symbol", (req, res) => {
+  const uri = `${process.env.API_HOST}/sapi/v1/ticker/24hr?symbol=${req.params.symbol}`;
+  axios.get(uri)
+  .then(response => res.json(response.data))
+  .catch(error => console.log(error));
 });
 
 app.listen(PORT, () => {
