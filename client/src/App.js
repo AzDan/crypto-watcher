@@ -7,9 +7,11 @@ function App() {
   const [data, setData] = React.useState(null);
 
   React.useEffect(() => {
-    fetch("/api")
+    fetch("/time")
       .then((res) => res.json())
-      .then((data) => setData(data.message));
+      .then((data) => {
+        setData(JSON.stringify(data))
+      });
   }, []);
 
 
