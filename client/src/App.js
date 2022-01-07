@@ -44,23 +44,32 @@ function App() {
     [],
   );
 
+  const getFunds = useCallback(
+    () => {
+      fetch('/getFunds')
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+    },
+    [],
+  )
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <button type="button" onClick={getTime}>Get Time</button>
-        <p>
-          {!data ? "loading" : data}
-        </p>
-        <button onClick={getCurrentCryptoValue}>Get Current Crypto</button>
-        <p>
-          {!symbol ? "loading" : symbol}
-        </p>
-        <button onClick={getAllCryptoValues}>Get all values</button>
-        <p>
-          {!ticker ? "loading" : JSON.stringify(ticker)}
-        </p>
-      </header>
+      <button type="button" onClick={getTime}>Get Time</button>
+      <p>
+        {!data ? "loading" : data}
+      </p>
+      <button onClick={getCurrentCryptoValue}>Get Current Crypto</button>
+      <p>
+        {!symbol ? "loading" : symbol}
+      </p>
+      <button onClick={getAllCryptoValues}>Get all values</button>
+      <p>
+        {!ticker ? "loading" : JSON.stringify(ticker)}
+      </p>
+      <button onClick={getFunds}>Get Funds</button>
     </div>
   );
 }
