@@ -1,6 +1,9 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 function Navbar() {
+  const serverTime = useSelector(state => state.server.serverTime);
+
   return (
     <div className='container'>
       <div className='navbar'>
@@ -13,7 +16,7 @@ function Navbar() {
         </div>
 
         <div className='navbar navbar-right'>
-          <span>Server Time is - </span>
+          <span>Server Time is - {serverTime}</span>
         </div>
       </div>
     </div>

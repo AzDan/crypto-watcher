@@ -4,31 +4,19 @@ import './App.css';
 import CryptoTicker from "./CryptoTicker";
 import Navbar from "./Navbar";
 import { useSelector, useDispatch } from 'react-redux';
-import { getServerTime } from "./actions";
+import { getServerTime, getCurrentCryptoInfo } from "./actions";
 
 function App() {
 
-  const serverTime = useSelector(state => state.server.serverTime);
   const dispatch = useDispatch();
 
-  const [symbol, setSymbol] = React.useState("btcinr");
-  const [ticker, setTicker] = React.useState(null);
+  const currentCrypto = useSelector(state => state.crypto.currentSymbol);
+  const currentCryptoData = useSelector(state => state.crypto.data);
+
   const [allValues, setAllValues] = React.useState([]);
   const [assets, setAssets] = React.useState([]);
   const [loadTickers, setLoadTickers] = React.useState(false);
 
-  
-  const getCurrentCryptoValue = useCallback(
-    () => {
-      fetch(`/ticker/${symbol}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setTicker(data);
-      });
-    },
-    [symbol],
-  );
   
   const getAllCryptoValues = useCallback(
     () => {
@@ -101,16 +89,13 @@ function App() {
       </div>
       <button type="button" onClick={getTickers}>LOAD TICKERS</button><br/>
       <button type="button" onClick={() => dispatch(getServerTime())}>Get Time</button>
+      <button onClick={() => dispatch(getCurrentCryptoInfo(currentCrypto))}>Get Current Crypto</button>
       <p>
-        {!serverTime ? "loading" : serverTime}
-      </p>
-      <button onClick={getCurrentCryptoValue}>Get Current Crypto</button>
-      <p>
-        {!symbol ? "loading" : symbol}
+        {!currentCrypto ? "loading" : currentCrypto}
       </p>
       <button onClick={getAllCryptoValues}>Get all values</button>
       <p>
-        {!ticker ? "loading" : JSON.stringify(ticker)}
+        {!currentCryptoData ? "loading" : JSON.stringify(currentCryptoData)}
       </p>
       <button onClick={getFunds}>Get Funds</button>
     </div>

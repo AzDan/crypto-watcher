@@ -5,11 +5,6 @@ let initialState = {
 
 const serverReducer = (state = initialState, action) => {
   switch(action.type) {
-    // case 'server/getTime':
-    //   return {
-    //     ...state,
-    //     serverTime: action.payload
-    //   }
       case 'server/fetchTime':
       return {
         ...state,

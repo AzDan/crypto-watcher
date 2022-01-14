@@ -21,3 +21,18 @@ export const getServerTime = () => async dispatch => {
     .then(res => res.json())
     .then(data => dispatch(fetchServerTimeSuccess(data.serverTime)))
 }
+
+//-------------------------------------------------------------------
+
+const cryptoFetchSuccess = (data) => {
+  return {
+    type: 'crypto/cryptoFetchSuccess',
+    payload: data
+  }
+}
+
+export const getCurrentCryptoInfo = (currentCrypto) => async dispatch => {
+  fetch(`/ticker/${currentCrypto}`)
+    .then(res => res.json())
+    .then(data => dispatch(cryptoFetchSuccess(data)))
+}
