@@ -36,3 +36,31 @@ export const getCurrentCryptoInfo = (currentCrypto) => async dispatch => {
     .then(res => res.json())
     .then(data => dispatch(cryptoFetchSuccess(data)))
 }
+
+//-------------------------------------------------------------------
+const getTickersSuccess = (data) => {
+  return {
+    type: 'tickers/fetchSuccess',
+    payload: data
+  }
+}
+
+export const getTickers = () => async dispatch => {
+  fetch("/alldata")
+    .then(res => res.json())
+    .then(data => dispatch(getTickersSuccess(data)))
+}
+
+//-------------------------------------------------------------------
+const getFundsSuccess = (data) => {
+  return {
+    type: 'funds/fetchSuccess',
+    payload: data
+  }
+}
+
+export const getFunds = () => async dispatch => {
+  fetch("/getFunds")
+    .then(res => res.json())
+    .then(data => dispatch(getFundsSuccess(data)))
+}
