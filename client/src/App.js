@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { render } from "react-dom";
 import './App.css';
 import CryptoTicker from "./CryptoTicker";
@@ -12,36 +12,24 @@ function App() {
 
   const currentCrypto = useSelector(state => state.crypto.currentSymbol);
   const currentCryptoData = useSelector(state => state.crypto.data);
+  const assets = useSelector(state => state.funds);
+  const tickers = useSelector(state => state.tickers);
 
-  // const renderTicker = useCallback(
-  //   () => {
-  //     if((allValues.length > 0) && (assets.length > 0)) {
-  //       assets.map((element, index) => {
-  //         let curAsset = element.asset;
-  //         if(curAsset != "inr") {
-  //           let foundAsset = allValues.find(({ baseAsset }) => baseAsset == curAsset);
-  //           if(foundAsset) {
-  //             return <CryptoTicker curAsset={curAsset} foundAsset={foundAsset.baseAsset}/>
-  //             // console.log(curAsset+"-----------------CRYPTO TICKER RENDERED------------------"+foundAsset.baseAsset);
-  //           }
-  //         }
-  //       })
-  //     }
-  //     else {
-  //       console.log("in else, no data");
-  //       return (<div>"loading"</div>);
-  //     }
-  //   },
-  //   [loadTickers],
-  // )
+  const renderTickers = () => {
+    if(tickers) {
+      for(const el in tickers) {
+        console.log(el)
+      }
+    }
+  }
 
   return (
     <div className="App">
       <Navbar/>
 
-      {/* <div className='ticker-wrapper' style={{height: "100px"}}>
-        {renderTicker}
-      </div> */}
+      <div className='ticker-wrapper' style={{height: "100px"}}>
+        { renderTickers() }
+      </div>
       <button type="button" onClick={() => dispatch(getTickers())}>LOAD TICKERS</button><br/>
       <button type="button" onClick={() => dispatch(getServerTime())}>Get Time</button>
       <button type="button" onClick={() => dispatch(getCurrentCryptoInfo(currentCrypto))}>Get Current Crypto</button>

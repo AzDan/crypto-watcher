@@ -1,9 +1,9 @@
 import React from 'react';
 
-function CryptoTicker(curAsset, foundAsset) {
-  console.log(curAsset,foundAsset);
+function CryptoTicker(props) {
+
   return (
-    <div>{curAsset} -----DATA------ {foundAsset}</div>
+    <div>{props.curAsset} -----DATA------</div>
   )
 }
 
