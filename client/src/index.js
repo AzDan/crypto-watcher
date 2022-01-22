@@ -2,11 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import store from './store';
+import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
+import { getServerTime, getCurrentCryptoInfo, getTickers, getFunds } from './actions';
+
+const currentCrypto = store.getState().crypto.currentSymbol;
+
+//Load Initial Store Data
+store.dispatch(getServerTime());
+store.dispatch(getCurrentCryptoInfo(currentCrypto));
+store.dispatch(getTickers());
+store.dispatch(getFunds());
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
