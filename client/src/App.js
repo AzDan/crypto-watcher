@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import { render } from "react-dom";
-import './App.css';
+import './App.scss';
 import CryptoTicker from "./CryptoTicker";
 import Navbar from "./Navbar";
 import { useSelector, useDispatch } from 'react-redux';
