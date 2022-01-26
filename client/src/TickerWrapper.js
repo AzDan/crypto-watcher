@@ -8,11 +8,14 @@ function TickerWrapper() {
   var items = [];
   for(const i in tickers) {
     if(tickers[i].quoteAsset=="inr")
-      items.push(<CryptoTicker curAsset={tickers[i].baseAsset}/>);
+      items.push(<CryptoTicker 
+        curAsset={tickers[i].baseAsset}
+        lastPrice={tickers[i].lastPrice}
+        selected={tickers[i].baseAsset=="btc"?'selected':''}/>);
   }
 
   return (
-    <div>
+    <div className='ticker-wrapper'>
       {items}
     </div>
   )

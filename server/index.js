@@ -51,7 +51,9 @@ app.get("/getFunds", (req, res) => {
     headers: {'X-Api-Key': process.env.API_KEY}
   })
   .then(response => res.json(response.data))
-  .catch(error => console.log(error));
+  .catch(error => {
+    console.log(error.response.status);
+  });
 });
 
 app.listen(PORT, () => {

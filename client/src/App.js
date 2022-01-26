@@ -26,9 +26,6 @@ function App() {
       <p>
         {!currentCrypto ? "loading" : currentCrypto}
       </p>
-      <p>
-        {!currentCryptoData ? "loading" : JSON.stringify(currentCryptoData)}
-      </p>
       <button type="button" onClick={() => dispatch(getFunds())}>Get Funds</button>
     </div>
   );
